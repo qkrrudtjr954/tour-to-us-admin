@@ -6,8 +6,7 @@ import org.aspectj.lang.annotation.Aspect;
 
 @Aspect
 public class LogAop {
-
-	@Around("within(kh.com.a.dao.impl.*)")
+	@Around("within(www.toursAdmin.com.dao.*)")
 	public Object loggerApp(ProceedingJoinPoint jp)throws Throwable {
 		
 		// 실행되는 메소드명

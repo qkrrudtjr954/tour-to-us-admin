@@ -15,18 +15,12 @@ public class TravelerDto implements Serializable {
 	private String like1;
 	private String like2;
 	private String like3;
-	
+
 	public TravelerDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
-
-
-	
-	public TravelerDto(int seq, String email, String password, String name, String reg_date, String last_updated,
-			int author, String profile, String like1, String like2, String like3) {
+	public TravelerDto(int seq, String email, String password, String name, String reg_date, String last_updated, int author, String profile, String like1, String like2, String like3) {
 		super();
 		this.seq = seq;
 		this.email = email;
@@ -40,11 +34,6 @@ public class TravelerDto implements Serializable {
 		this.like2 = like2;
 		this.like3 = like3;
 	}
-
-
-
-
-
 
 	public int getSeq() {
 		return seq;
@@ -141,5 +130,4 @@ public class TravelerDto implements Serializable {
 				+ profile + ", like1=" + like1 + ", like2=" + like2 + ", like3=" + like3 + "]";
 	}
 
-	
 }

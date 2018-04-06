@@ -33,7 +33,7 @@
 	<mvc:default-servlet-handler/>
 
 
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**/*.do" />
 			<mvc:exclude-mapping path="/main.do" />
@@ -41,7 +41,7 @@
 			<mvc:exclude-mapping path="/signup.do" />
 			<bean class="www.toursAdmin.com.aop.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 
 
 </beans>

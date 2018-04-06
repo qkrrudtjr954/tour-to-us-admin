@@ -3,56 +3,15 @@
 
 
 <mapper namespace="Traveler">
-
-	<select id="signin" parameterType="www.tours2us.com.model.TravelerDto" resultType="www.tours2us.com.model.TravelerDto">
-		SELECT * FROM TRAVELER
-		WHERE EMAIL=#{email} AND PASSWORD=#{password}
+	<select id="getAllTraveler" resultType="www.toursAdmin.com.TravelerDto">
+		SELECT * FROM TRAVELER ORDER BY REG_DATE DESC
 	</select>
-
- 	<insert id="signup" parameterType="www.tours2us.com.model.TravelerDto">
- 		INSERT INTO TRAVELER(SEQ, EMAIL, NAME, PASSWORD, AUTHOR, REG_DATE, LAST_UPDATED, PROFILE, LIKE1, LIKE2, LIKE3)
- 		VALUES(TRAVELER_SEQ.NEXTVAL, #{email}, #{name},#{password}, 0, SYSDATE, SYSDATE, #{profile}, #{like1}, #{like2}, #{like3})
- 	</insert>
-
-
- 	<select id ="getUserByEmail" parameterType="java.lang.String" resultType="www.tours2us.com.model.TravelerDto">
- 		select * from Traveler where email=#{email}
- 	</select>
-
- 	<select id ="getUserBySeq" parameterType="java.lang.Integer" resultType="www.tours2us.com.model.TravelerDto">
- 		select * from Traveler where seq=#{seq}
- 	</select>
-
-
- 	<select id ="getTravelersByNamdOrEmail" parameterType="java.lang.String" resultType="www.tours2us.com.model.TravelerDto">
- 		select * from Traveler where email like '%'||#{param}||'%' or name like '%'||#{param}||'%'
- 	</select>
-
- 	<update id="myInfoUpd" parameterType="www.tours2us.com.model.TravelerDto">
- 		UPDATE TRAVELER SET PASSWORD=#{password}, NAME=#{name}
- 		WHERE EMAIL=#{email}
- 	</update>
-
- 	<insert id="addCoTraveler" parameterType="www.tours2us.com.model.CoTravelerDto">
- 		INSERT INTO COTRAVELER(SEQ, TARGET_USER_SEQ, TARGET_PLANER_SEQ, DESCRIPTION, REG_DATE, LAST_UPDATED, TARGET_USER_NAME)
-		VALUES(COTRAVELER_SEQ.NEXTVAL, #{target_user_seq}, #{target_planer_seq}, #{description}, SYSDATE, SYSDATE, #{target_user_name})
-		<selectKey keyProperty="seq" resultType="int" order="AFTER">
-			SELECT COTRAVELER_SEQ.CURRVAL FROM DUAL
-		</selectKey>
- 	</insert>
-
- 	<select id ="getCoTravelers" parameterType="java.lang.Integer" resultType="www.tours2us.com.model.TravelerDto">
- 		SELECT * FROM TRAVELER T, COTRAVELER C WHERE C.TARGET_USER_SEQ = T.SEQ AND C.TARGET_PLANER_SEQ = #{seq}
- 	</select>
-
-
- 	<select id ="getCoTraveler" parameterType="www.tours2us.com.model.CoTravelerDto" resultType="www.tours2us.com.model.CoTravelerDto">
- 		SELECT * FROM COTRAVELER WHERE TARGET_USER_SEQ = #{target_user_seq} AND TARGET_PLANER_SEQ = #{target_planer_seq}
- 	</select>
-
- 	<delete id="deleteCoTraveler" parameterType="www.tours2us.com.model.CoTravelerDto">
- 		DELETE FROM COTRAVELER WHERE TARGET_USER_SEQ = #{target_user_seq} AND TARGET_PLANER_SEQ = #{target_planer_seq}
- 	</delete>
-
-
+	
+	<select id="getTravelerBySeq" resultType="www.toursAdmin.com.TravelerDto">
+		SELECT * FROM TRAVELER WHERE SEQ = #{seq}
+	</select>
+	
+	<update id="deleteTraveler" parameterType="int">
+		UPDATE TRAVELER SET STATUS = 2 WHERE SEQ = #{seq}
+	</update>
 </mapper>

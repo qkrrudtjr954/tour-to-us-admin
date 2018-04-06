@@ -14,9 +14,7 @@ public class AdminController {
 	
 	@RequestMapping(value="main.do", method=RequestMethod.GET)
 	public String main(Model model) {
-		
 		logger.info("AdminController >>> main");
-		
 		return "main.tiles";
 	}
 }
