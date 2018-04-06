@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Planer">
+
+	<select id="getPlaner" parameterType="int" resultType="www.tours2us.com.model.PlanerDto">
+		SELECT * FROM PLANER WHERE SEQ = #{seq}
+	</select>
+
+	<insert id="addPlaner" parameterType="www.tours2us.com.model.PlanerDto">
+		INSERT INTO PLANER(SEQ, TARGET_USER_SEQ, TITLE, LOCATION, STATUS, TO_DATE, FROM_DATE, TOTAL_COST, PAPER, RANGE, REG_DATE, LAST_UPDATED)
+		VALUES( PLANER_SEQ.NEXTVAL, #{target_user_seq}, #{title}, #{location}, 0, #{to_date}, #{from_date}, 0, #{paper}, (SELECT (to_date(#{to_date}, 'yyyy-MM-dd')-to_date(#{from_date}, 'yyyy-MM-dd'))+1 from dual), SYSDATE, SYSDATE)
+		<selectKey keyProperty="seq" resultType="int" order="AFTER">
+			SELECT PLANER_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<select id="getplanList" parameterType="int" resultType="www.tours2us.com.model.PlanerDto">		
+		<!-- SELECT DISTINCT * 
+		FROM PLANER P, COTRAVELER C 
+		WHERE (P.SEQ = C.TARGET_PLANER_SEQ AND C.TARGET_USER_SEQ=#{seq}) 
+		AND P.STATUS NOT IN(SELECT STATUS FROM PLANER WHERE STATUS=3 OR STATUS=4)
+		ORDER BY P.REG_DATE DESC	 -->
+		
+		SELECT P.SEQ, P.TARGET_USER_SEQ, P.TITLE, P.LOCATION, P.STATUS, P.TO_DATE, P.FROM_DATE, P.TOTAL_COST, P.REG_DATE, P.LAST_UPDATED, P.PAPER, P.RANGE, 
+		(SELECT NAME FROM TRAVELER T WHERE T.SEQ = P.TARGET_USER_SEQ) AS NAME
+		FROM PLANER P, COTRAVELER C
+		WHERE (P.SEQ = C.TARGET_PLANER_SEQ AND C.TARGET_USER_SEQ=#{seq})
+		AND P.STATUS NOT IN(3, 4) 
+		ORDER BY P.REG_DATE DESC
+	</select>
+	
+
+	<select id="getDayplanList" parameterType="int" resultType="www.tours2us.com.model.DayPlanerDto">
+		SELECT * FROM DAYPLANER WHERE TARGET_PLANER_SEQ=#{SEQ}
+		ORDER BY REG_DATE ASC
+	</select>
+
+	<update id="updateCompletePlaner" parameterType="www.tours2us.com.model.PlanerDto">
+		UPDATE PLANER SET STATUS = #{status} WHERE SEQ = #{seq}
+	</update>
+
+	<select id="getDayPlanerByTargetPlanerSeqAndDayCount" parameterType="www.tours2us.com.model.DayPlanerDto" resultType="www.tours2us.com.model.DayPlanerDto">
+		SELECT * FROM DAYPLANER WHERE TARGET_PLANER_SEQ = #{target_planer_seq} AND DAY_COUNT = #{day_count}
+	</select>
+
+	<select id="getDayPlanerBySeq" parameterType="int" resultType="www.tours2us.com.model.DayPlanerDto">
+		SELECT * FROM DAYPLANER WHERE SEQ = #{seq}
+	</select>
+
+	<insert id="addDayPlaner" parameterType="www.tours2us.com.model.DayPlanerDto">
+		INSERT INTO DAYPLANER(SEQ, TARGET_PLANER_SEQ, DAY, DAY_COUNT, EXPECTED_COST, REG_DATE, LAST_UPDATED)
+		VALUES( DAYPLANER_SEQ.NEXTVAL, #{target_planer_seq}, (SELECT TO_CHAR(TO_DATE(FROM_DATE) + (#{day_count}-1), 'YYYY-MM-DD') FROM PLANER WHERE SEQ = #{target_planer_seq} ), #{day_count}, 0, SYSDATE, SYSDATE )
+		<selectKey keyProperty="seq" resultType="int" order="AFTER">
+			SELECT DAYPLANER_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<insert id="addTimePlaner" parameterType="www.tours2us.com.model.TimePlanerDto">
+		INSERT INTO TIMEPLANER(SEQ, TARGET_DAYPLANER_SEQ, START_TIME, END_TIME, LOCATION, EXPECTED_COST, TRANSPORTATION, REG_DATE, LAST_UPDATED, TYPES, CONTENT)
+		VALUES(TIMEPLANER_SEQ.NEXTVAL, #{target_dayplaner_seq}, #{start_time}, #{end_time}, #{location}, #{expected_cost}, #{transportation}, SYSDATE, SYSDATE, #{types}, #{content})
+		<selectKey keyProperty="seq" resultType="int" order="AFTER">
+			SELECT TIMEPLANER_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<select id="getTimePlaner" parameterType="int" resultType="www.tours2us.com.model.TimePlanerDto">
+		SELECT * FROM TIMEPLANER WHERE SEQ = #{seq}
+	</select>
+
+	<select id="getAllTimePlanersByTargetDayPlanerSeq" parameterType="int" resultType="www.tours2us.com.model.TimePlanerDto">
+		SELECT * FROM TIMEPLANER WHERE TARGET_DAYPLANER_SEQ = #{seq}
+		ORDER BY SEQ ASC
+	</select>
+
+	<update id="changeTitle" parameterType="www.tours2us.com.model.PlanerDto">
+		UPDATE PLANER SET TITLE=#{title}, LAST_UPDATED=sysdate WHERE SEQ=#{seq}
+	</update>
+	
+	<update id="planDelete" parameterType="int">
+		UPDATE PLANER SET STATUS=3 WHERE SEQ=#{seq}
+	</update>
+
+	<select id="getKorea" resultType="www.tours2us.com.model.Korea">
+		SELECT * FROM KOREA
+	</select>
+
+</mapper>
