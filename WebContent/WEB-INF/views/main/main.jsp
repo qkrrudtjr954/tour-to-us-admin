@@ -21,7 +21,7 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Header</th>
+                  <th>Headder</th>
                   <th>Header</th>
                   <th>Header</th>
                   <th>Header</th>
