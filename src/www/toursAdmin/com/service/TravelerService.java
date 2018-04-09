@@ -10,6 +10,4 @@ public interface TravelerService {
 
 	TravelerDto getTravelerBySeq(int seq);
 
-	TravelerDto deleteTraveler(int seq);
-
 }

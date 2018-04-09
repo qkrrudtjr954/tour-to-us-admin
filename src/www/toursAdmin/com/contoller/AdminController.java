@@ -15,6 +15,8 @@ public class AdminController {
 	@RequestMapping(value="main.do", method=RequestMethod.GET)
 	public String main(Model model) {
 		logger.info("AdminController >>> main");
+		model.addAttribute("doc_title", "Tours To us");
+		model.addAttribute("menu_id", "home");
 		return "main.tiles";
 	}
 }

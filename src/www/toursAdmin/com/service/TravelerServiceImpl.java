@@ -23,9 +23,4 @@ public class TravelerServiceImpl implements TravelerService{
 		return travelerDao.getTravelerBySeq(seq);
 	}
 
-	@Override
-	public TravelerDto deleteTraveler(int seq) {
-		travelerDao.deleteTraveler(seq);
-		return travelerDao.getTravelerBySeq(seq);
-	}
 }

@@ -3,15 +3,12 @@
 
 
 <mapper namespace="Traveler">
-	<select id="getAllTraveler" resultType="www.toursAdmin.com.TravelerDto">
+	<select id="getAllTraveler" resultType="www.toursAdmin.com.model.TravelerDto">
 		SELECT * FROM TRAVELER ORDER BY REG_DATE DESC
 	</select>
 	
-	<select id="getTravelerBySeq" resultType="www.toursAdmin.com.TravelerDto">
+	<select id="getTravelerBySeq" resultType="www.toursAdmin.com.model.TravelerDto">
 		SELECT * FROM TRAVELER WHERE SEQ = #{seq}
 	</select>
 	
-	<update id="deleteTraveler" parameterType="int">
-		UPDATE TRAVELER SET STATUS = 2 WHERE SEQ = #{seq}
-	</update>
 </mapper>

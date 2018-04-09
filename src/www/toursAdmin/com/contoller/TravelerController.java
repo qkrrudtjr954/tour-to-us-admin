@@ -24,6 +24,8 @@ public class TravelerController {
 	@RequestMapping(value="travelerManager.do", method=RequestMethod.GET)
 	public String travelerManager(Model model) {
 		List<TravelerDto> travelerList = travelerService.getAllTraveler();
+		model.addAttribute("doc_title", "유저 관리");
+		model.addAttribute("menu_id", "traveler");
 		model.addAttribute("travelers", travelerList);
 		return "travelerManager.tiles";
 	}
@@ -31,14 +33,9 @@ public class TravelerController {
 	@RequestMapping(value="travelerDetail.do", method=RequestMethod.GET)
 	public String travelerDetail(Model model, int seq) {
 		TravelerDto traveler = travelerService.getTravelerBySeq(seq);
+		model.addAttribute("doc_title", "유저 상세보기");
+		model.addAttribute("menu_id", "traveler");
 		model.addAttribute("traveler", traveler);
 		return "travelerDetail.tiles";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="deleteTraveler.do", method=RequestMethod.GET)
-	public TravelerDto deleteTraveler(Model model, int seq) {
-		TravelerDto traveler = travelerService.deleteTraveler(seq);
-		return traveler;
 	}
 }

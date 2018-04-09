@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Planer">
+	<select id="getAllPlaner" resultType="www.toursAdmin.com.model.PlanerDto">
+		SELECT * FROM PLANER
+	</select>
+
+	<select id="getPlanerBySeq" parameterType="int" resultType="www.toursAdmin.com.model.PlanerDto">
+		SELECT * FROM PLANER WHERE SEQ = #{seq}
+	</select>
+
+	<update id="deletePlaner" parameterType="int">
+		UPDATE PLANER SET STATUS = 4 WHERE SEQ = #{seq}
+	</update>	
+
+	<select id="getDayPlanerByTargetPlanerSeq" parameterType="int" resultType="www.toursAdmin.com.model.DayPlanerDto">
+		SELECT * FROM DAYPLANER WHERE TARGET_PLANER_SEQ = #{seq}
+	</select>
+
+	<select id="getTimePlanerByDayPlanerSeqAndDay" parameterType="www.toursAdmin.com.model.DayPlanerDto" resultType="www.toursAdmin.com.model.TimePlanerDto">
+		SELECT * FROM TIMEPLANER WHERE TARGET_DAYPLANER_SEQ = #{seq}
+	</select>
+</mapper>

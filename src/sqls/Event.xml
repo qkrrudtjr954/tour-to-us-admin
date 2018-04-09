@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Event">
+	<select id="getAllEvent" resultType="www.toursAdmin.com.model.EventDto">
+		SELECT * FROM EVENT
+	</select>
+	
+	<select id="getEventBySeq" parameterType="int" resultType="www.toursAdmin.com.model.EventDto">
+		SELECT * FROM EVENT WHERE SEQ = #{seq}
+	</select>
+	
+	<insert id="insertEvent" parameterType="www.toursAdmin.com.model.EventDto">
+		INSERT INTO EVENT(SEQ, TITLE, CONTENT, FROM_DATE, TO_DATE, LAST_UPDATED, REG_DATE, STATUS) 
+		VALUES (EVENT_SEQ.NEXTVAL, #{title}, #{content}, #{from_date}, #{to_date}, SYSDATE, SYSDATE, #{status})
+		<selectKey keyProperty="seq" resultType="int" order="AFTER">
+			SELECT EVENT_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<update id="updateStatus" parameterType="www.toursAdmin.com.model.EventDto">
+		UPDATE EVENT SET STATUS = #{status} WHERE SEQ = #{seq}
+	</update>
+
+	<update id="deleteEvent" parameterType="int">
+		UPDATE EVENT SET STATUS = 2 WHERE SEQ = #{seq}
+	</update>
+	
+</mapper>

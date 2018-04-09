@@ -16,25 +16,10 @@
 
 <div class="row no-gutters">
 	${traveler }
-	<button class="btn btn-danger" id="deleteBtn">X</button>
 </div>
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-	});
-	
-	$("#deleteBtn").on('click', function () {
-		if(confirm('정말 삭제하시겠습니까?')){
-			$.ajax({
-				url: 'deleteTraveler.do',
-				data: { seq : ${traveler.seq} },
-				method: 'GET',
-				success: function (data) {
-					alert('삭제 됐습니다.');
-					console.log(data);
-				}
-			})
-		}
 	});
 </script>

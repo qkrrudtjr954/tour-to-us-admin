@@ -10,6 +10,4 @@ public interface TravelerDao {
 
 	TravelerDto getTravelerBySeq(int seq);
 
-	void deleteTraveler(int seq);
-
 }

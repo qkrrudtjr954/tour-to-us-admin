@@ -24,4 +24,15 @@
 	<definition name="planerDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/planer/detail.jsp"/>
 	</definition>
+
+	<!-- Event Manager -->
+	<definition name="eventManager.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/event/index.jsp"/>
+	</definition>
+	<definition name="eventDetail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/event/detail.jsp"/>
+	</definition>
+	<definition name="eventInsert.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/event/insert.jsp"/>
+	</definition>
 </tiles-definitions>

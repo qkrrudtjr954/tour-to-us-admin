@@ -25,9 +25,5 @@ public class TravelerDaoImpl implements TravelerDao{
 		return sqlSession.selectOne(namespace + "getTravelerBySeq", seq);
 	}
 
-	@Override
-	public void deleteTraveler(int seq) {
-		sqlSession.update(namespace + "deleteTraveler", seq);
-	}
 	
 }

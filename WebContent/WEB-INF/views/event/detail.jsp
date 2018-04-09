@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -15,38 +16,26 @@
 </div>
 
 <div class="row no-gutters">
-	<div class="table-responsive">
-		<table class="table table-striped table-sm" id="myTable">
-			<thead>
-				<tr>
-					<th>No</th>
-					<th>이름</th>
-					<th>Email</th>
-					<th>상세보기</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${travelers }" var="traveler" varStatus="i">
-					<tr>
-						<td>${i.index }</td>
-						<td>${traveler.name }</td>
-						<td>${traveler.email }</td>
-						<td><button class="btn btn-primary" onclick="moveToDetail(${traveler.seq})">+</button></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
+	${event }
+	<button class="btn btn-danger" id="deleteBtn">X</button>
 </div>
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#myTable').DataTable({
-            "order": [[ 0, "desc" ]],
-		});
+		
 	});
 	
-	function moveToDetail(seq) {
-		location.href = 'travelerDetail.do?seq='+seq;
-	}
+	$("#deleteBtn").on('click', function () {
+		if(confirm('정말 삭제하시겠습니까?')){
+			$.ajax({
+				url: 'eventDelete.do',
+				data: { seq : ${event.seq} },
+				method: 'GET',
+				success: function (data) {
+					alert('삭제 됐습니다.');
+					console.log(data);
+				}
+			})
+		}
+	});
 </script>
