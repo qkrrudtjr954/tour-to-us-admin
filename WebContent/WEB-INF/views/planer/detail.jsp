@@ -15,49 +15,124 @@
 	</div>
 </div>
 <style>
-	#totalPlaner-container {
-		background: red;
-	}
-	#dayPlaner-container {
-		background: blue;
-	}
-	#timePlaner-container {
-		background: green;
-	}
+	
 	.planer-info {
 		height: 500px;
 		margin: 10px;
 		overflow-x: hidden;
 		overflow-y: scroll;
 	}
+	
+	.totalPlaner-item ul li,
+	.dayPlaner-item ul li,
+	.timePlaner-item ul li{
+		font-size: 20px;
+	}
 	.dayPlaner-item {
+		cursor: pointer;
+	}
+	.totalPlaner-item,
+	.dayPlaner-item,
+	.timePlaner-item {
+		border: 2px solid gray;
+		border-radius: 10px;
 		padding: 10px;
 		margin: 5px;
 		width: 100%;
 	}
+	
+	
+	.full-dayPlaner,
+	.full-timePlaner {
+		border: 2px solid gray;
+		border-radius: 10px;
+		padding: 10px;
+		margin: 5px;
+	}
+	.full-dayPlaner {
+		background-color: gray;
+		width: 100%;
+	}
+	.full-timePlaner {
+		width: 50%;
+	}
 </style>
+
+<div class="row no-gutters">
+	<div class="alert alert-dark text-center" role="alert" style="width:100%;font-size: 20px;">
+		${traveler.like1 }&nbsp;${traveler.like2 }&nbsp;${traveler.like3 }&nbsp; <b>${traveler.name }</b>님의 여행 플랜		
+	</div>
+</div>
 <div class="row no-gutters">
 	<div class="col planer-info" id="totalPlaner-container">
-		${planer }
-		<button class="btn btn-danger" id="deleteBtn">X</button>
+		<div class="row no-gutters">
+			<div class="totalPlaner-item">
+				<ul>
+					<li>${planer.title }</li>
+					<li>${planer.location }</li>
+					<li>${planer.from_date } ~ ${planer.to_date }</li>
+					<li>${planer.name }</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	<div class="col planer-info" id="dayPlaner-container">
 		<c:forEach items="${dayPlaners }" varStatus="i" var="dayPlaner">
 			<div class="row no-gutters">
-				<div class="dayPlaner-item"  onclick="getTimePlaner(${dayPlaner.seq })">
-					${dayPlaner }
+				<div class="dayPlaner-item"  onclick="getTimePlaner(${dayPlaner.seq }, this)">
+					<ul>
+						<li>일정 : ${dayPlaner.day }</li>
+						<li>일차 : ${dayPlaner.day_count } 일 차</li>
+					</ul>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
-	<div class="col planer-info" id="timePlaner-container">
-		
+	<div class="col planer-info" id="timePlaner-container"></div>
+</div>
+
+<div class="d-flex justify-content-center">
+	<button class="btn btn-danger" id="deleteBtn">Planer 삭제하기</button>&nbsp;&nbsp;&nbsp;
+	<button class="btn btn-primary" data-toggle="collapse" data-target="#fullPlaner" aria-expanded="false" aria-controls="fullPlaner">
+		Planer 전체 보기 
+	</button>
+</div>
+
+<div class="row no-gutters">
+	<div class="collapse" id="fullPlaner" style="width:100%;">
+		<div class="card card-body">
+			<c:forEach items="${subPlaners.keySet() }" var="dayPlaner" varStatus="i">
+				<div class="row no-gutters">
+					<div class="full-dayPlaner">
+						<ul>
+							<li>일정 : ${dayPlaner.day }</li>
+							<li>일차 : ${dayPlaner.day_count } 일 차</li>
+						</ul>
+					</div>
+				</div>
+				<c:forEach items="${subPlaners.get(dayPlaner) }" var="timePlaner" varStatus="i">
+					<div class="d-flex justify-content-center">
+						<div class="full-timePlaner">
+							<ul>
+								<li>${timePlaner.start_time } ~ ${timePlaner.end_time }</li>
+								<li>${timePlaner.transportation }</li>
+								<li>${timePlaner.location }</li>
+								<li>${timePlaner.expected_cost }</li>
+								<li>${timePlaner.types }</li>
+								<li>${timePlaner.content }</li>
+							</ul>
+						</div>
+					</div>
+				</c:forEach>
+			</c:forEach>
+		</div>
 	</div>
 </div>
 
+
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+		$('.dayPlaner-item')[0].click();
 	});
 	
 	$("#deleteBtn").on('click', function () {
@@ -74,7 +149,10 @@
 		}
 	});
 	
-	function getTimePlaner(seq) {
+	function getTimePlaner(seq, DOM) {
+		$('.dayPlaner-item').css('background-color', 'white');
+		$(DOM).css('background-color', 'gray');
+		
 		$('#timePlaner-container').children().remove();
 		$.ajax({
 			url: 'getTimePlaner.do',
@@ -91,7 +169,14 @@
 		var html = 
 			'<div class="row no-gutters">'+
 				'<div class="timePlaner-item">'+
-					data.transportation +
+					'<ul>'+
+						'<li>' + data.start_time + ' ~ ' + data.end_time + '</li>'+
+						'<li>'+ data.transportation +'</li>'+
+						'<li>'+ data.location +'</li>'+
+						'<li>'+ data.expected_cost +'</li>'+
+						'<li>'+ data.types+'</li>'+
+						'<li>'+ data.content+'</li>'+
+					'</ul>'+
 				'</div>'+
 			'</div>';
 		$('#timePlaner-container').append(html);

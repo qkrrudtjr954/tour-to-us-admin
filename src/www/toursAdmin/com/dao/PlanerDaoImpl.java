@@ -38,8 +38,8 @@ public class PlanerDaoImpl implements PlanerDao{
 	}
 
 	@Override
-	public List<TimePlanerDto> getTimePlanerByDayPlanerSeqAndDay(DayPlanerDto dayPlaner) {
-		return sqlSession.selectList(namespace + "getTimePlanerByDayPlanerSeqAndDay", dayPlaner);
+	public List<TimePlanerDto> getTimePlanerByDayPlanerSeqAndDay(int seq) {
+		return sqlSession.selectList(namespace + "getTimePlanerByDayPlanerSeqAndDay", seq);
 	}
 	
 }

@@ -16,8 +16,32 @@
 </div>
 
 <div class="row no-gutters">
-	${event }
-	<button class="btn btn-danger" id="deleteBtn">X</button>
+	<div class="offset-md-2 col-md-8">
+		<div class="event-container">
+			<div class="event-title d-flex justify-content-center align-items-center">
+				<span class="badge badge-pill" style="background-color: #7DC3BB; color: #fff">${event.category }</span>&nbsp;&nbsp;
+				<h1>${event.title }</h1>
+				<c:choose>
+					<c:when test="${event.status==0 }">
+						&nbsp;&nbsp;<span class="badge badge-pill" style="background-color: blue; color: #fff">진행중</span>					
+					</c:when>
+					<c:when test="${event.status==1 }">
+						&nbsp;&nbsp;<span class="badge badge-pill" style="background-color: red; color: #fff">완료된</span>
+					</c:when>
+				</c:choose>
+			</div>
+			<div class="event-range text-right">
+				<span>${event.from_date } ~ ${event.to_date }</span>
+			</div>
+			<hr>
+			<div class="event-content">
+				${event.content }
+			</div>
+		</div>
+	</div>
+</div>
+<div class="d-flex justify-content-center">
+	<button class="btn btn-danger btn-lg" id="deleteBtn">이벤트 삭제하기</button>
 </div>
 
 <script type="text/javascript">

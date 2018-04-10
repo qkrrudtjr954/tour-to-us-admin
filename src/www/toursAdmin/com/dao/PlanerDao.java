@@ -16,6 +16,6 @@ public interface PlanerDao {
 
 	List<DayPlanerDto> getDayPlanerByTargetPlanerSeq(int seq);
 
-	List<TimePlanerDto> getTimePlanerByDayPlanerSeqAndDay(DayPlanerDto dayPlaner);
+	List<TimePlanerDto> getTimePlanerByDayPlanerSeqAndDay(int seq);
 
 }

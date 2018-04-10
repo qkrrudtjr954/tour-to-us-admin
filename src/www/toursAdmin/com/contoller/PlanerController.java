@@ -1,6 +1,8 @@
 package www.toursAdmin.com.contoller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import www.toursAdmin.com.model.DayPlanerDto;
 import www.toursAdmin.com.model.PlanerDto;
 import www.toursAdmin.com.model.TimePlanerDto;
+import www.toursAdmin.com.model.TravelerDto;
 import www.toursAdmin.com.service.PlanerService;
+import www.toursAdmin.com.service.TravelerService;
 
 @Controller
 public class PlanerController {
@@ -23,6 +27,9 @@ public class PlanerController {
 	
 	@Autowired
 	PlanerService planerService;
+	
+	@Autowired
+	TravelerService travelerService;
 	
 	@RequestMapping(value="planerManager.do", method=RequestMethod.GET)
 	public String planerManager(Model model) {
@@ -48,17 +55,23 @@ public class PlanerController {
 		PlanerDto planer = planerService.getPlanerBySea(seq);
 		List<DayPlanerDto> dayPlaners = planerService.getDayPlanerByTargetPlanerSeq(seq);
 		
+		Map<DayPlanerDto, List<TimePlanerDto>> subPlaners = planerService.getSubPlaners(seq);
+		
+		TravelerDto traveler = travelerService.getTravelerBySeq(planer.getTarget_user_seq());
+		
 		model.addAttribute("doc_title", "플래너 상세보기");
 		model.addAttribute("menu_id", "planer");
 		model.addAttribute("planer", planer);
 		model.addAttribute("dayPlaners", dayPlaners);
+		model.addAttribute("subPlaners", subPlaners);
+		model.addAttribute("traveler", traveler);
 		return "planerDetail.tiles";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="getTimePlaner.do", method=RequestMethod.GET)
-	public List<TimePlanerDto> getTimePlaner(DayPlanerDto dayPlaner) {
-		List<TimePlanerDto> timePlaner = planerService.getTimePlanerByDayPlanerSeqAndDay(dayPlaner);
+	public List<TimePlanerDto> getTimePlaner(int seq) {
+		List<TimePlanerDto> timePlaner = planerService.getTimePlanerByDayPlanerSeqAndDay(seq);
 		return timePlaner;
 	}
 	

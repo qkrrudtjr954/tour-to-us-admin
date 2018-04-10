@@ -7,7 +7,9 @@
 	</select>
 
 	<select id="getPlanerBySeq" parameterType="int" resultType="www.toursAdmin.com.model.PlanerDto">
-		SELECT * FROM PLANER WHERE SEQ = #{seq}
+		SELECT P.SEQ, (SELECT T.NAME FROM TRAVELER T WHERE SEQ = P.TARGET_USER_SEQ) AS NAME, P.TITLE, P.LOCATION, P.TO_DATE, P.FROM_DATE, P.TOTAL_COST, P.REG_DATE, P.LAST_UPDATED, P.PAPER, P.RANGE, P.TARGET_USER_SEQ
+		FROM PLANER P 
+		WHERE SEQ = #{seq}
 	</select>
 
 	<update id="deletePlaner" parameterType="int">
@@ -15,10 +17,10 @@
 	</update>	
 
 	<select id="getDayPlanerByTargetPlanerSeq" parameterType="int" resultType="www.toursAdmin.com.model.DayPlanerDto">
-		SELECT * FROM DAYPLANER WHERE TARGET_PLANER_SEQ = #{seq}
+		SELECT * FROM DAYPLANER WHERE TARGET_PLANER_SEQ = #{seq} ORDER BY DAY_COUNT ASC
 	</select>
 
-	<select id="getTimePlanerByDayPlanerSeqAndDay" parameterType="www.toursAdmin.com.model.DayPlanerDto" resultType="www.toursAdmin.com.model.TimePlanerDto">
+	<select id="getTimePlanerByDayPlanerSeqAndDay" parameterType="int" resultType="www.toursAdmin.com.model.TimePlanerDto">
 		SELECT * FROM TIMEPLANER WHERE TARGET_DAYPLANER_SEQ = #{seq}
 	</select>
 </mapper>

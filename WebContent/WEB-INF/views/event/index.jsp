@@ -14,7 +14,6 @@
 	</div>
 </div>
 
-<a href="eventInsert.do">이벤트 작성하기</a>
 
 <div class="row no-gutters">
 	<div class="table-responsive">
@@ -55,6 +54,10 @@
 			</tbody>
 		</table>
 	</div>
+</div>
+
+<div class="d-flex justify-content-center">
+	<a class="btn btn-lg btn-primary" href="eventInsert.do">이벤트 작성하기</a>
 </div>
 
 <script type="text/javascript">
