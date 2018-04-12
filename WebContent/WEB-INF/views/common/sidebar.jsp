@@ -38,6 +38,11 @@
 					<span data-feather="book"></span>가이드 관리
 				</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="" id="upload"> 
+					<span data-feather="book"></span>자료 업로드 
+				</a>
+			</li>
 		</ul>
 		
 		<script type="text/javascript">
