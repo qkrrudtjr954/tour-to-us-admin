@@ -63,5 +63,12 @@
 		<put-attribute name="main" value="/WEB-INF/views/free/detail.jsp"/>
 	</definition>
 	
+	<!-- Guide Manager -->
+	<definition name="todoongManager.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/todoongGuide/index.jsp"/>
+	</definition>
+	<definition name="guideDetail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/todoongGuide/detail.jsp"/>
+	</definition>
 	
 </tiles-definitions>

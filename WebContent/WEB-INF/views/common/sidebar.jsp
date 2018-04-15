@@ -34,7 +34,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="" id="guide"> 
+				<a class="nav-link" href="todoongManager.do" id="guide"> 
 					<span data-feather="book"></span>가이드 관리
 				</a>
 			</li>
