@@ -9,4 +9,5 @@ public interface GuideDao {
 	List<PlanerDto> getAllTodoongGuide();
 	void deleteTodoongGuide(int seq);
 	List<ToditorBBS> getAllToditorGuide();
+	ToditorBBS toditorGuideDetail(int seq);
 }

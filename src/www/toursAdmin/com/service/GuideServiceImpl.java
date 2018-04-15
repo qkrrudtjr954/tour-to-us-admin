@@ -35,4 +35,10 @@ public class GuideServiceImpl implements GuideService {
 		// TODO Auto-generated method stub
 		return guideDao.getAllToditorGuide();
 	}
+
+	@Override
+	public ToditorBBS toditorGuideDetail(int seq) {
+		// TODO Auto-generated method stub
+		return guideDao.toditorGuideDetail(seq);
+	}
 }

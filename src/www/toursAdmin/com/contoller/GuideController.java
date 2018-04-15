@@ -77,4 +77,14 @@ public class GuideController {
 		return "toditorManager.tiles";
 	}
 	
+	@RequestMapping(value="toditorGuideDetail.do", method=RequestMethod.GET)
+	public String toditorGuideDetail(Model model, int seq)throws Exception{
+		ToditorBBS toditor = guideService.toditorGuideDetail(seq);
+		
+		model.addAttribute("menu_id", "guide");
+		model.addAttribute("doc_title", "가이드 관리");
+		model.addAttribute("toditor", toditor);
+		return "toditorGuideDetail.tiles";
+	}
+	
 }

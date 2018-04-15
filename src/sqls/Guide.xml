@@ -14,4 +14,9 @@
 	<select id="getAllToditorGuide" resultType="www.toursAdmin.com.model.ToditorBBS">
 		SELECT * FROM EDITOR
 	</select>
+	
+	<select id="toditorGuideDetail" parameterType="int" resultType="www.toursAdmin.com.model.ToditorBBS">
+		SELECT * FROM EDITOR
+		WHERE SEQ=#{seq}
+	</select>
 </mapper>
