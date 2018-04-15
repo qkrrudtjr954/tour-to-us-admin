@@ -55,4 +55,13 @@
 		<put-attribute name="main" value="/WEB-INF/views/review/detail.jsp"/>
 	</definition>
 	
+	<!-- Free Manager -->
+	<definition name="freeManager.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/free/index.jsp"/>
+	</definition>
+	<definition name="freeDetail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/free/detail.jsp"/>
+	</definition>
+	
+	
 </tiles-definitions>

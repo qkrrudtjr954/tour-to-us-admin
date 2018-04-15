@@ -29,7 +29,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="" id="free"> 
+				<a class="nav-link" href="freeManager.do" id="free"> 
 					<span data-feather="book"></span>자유 게시판 관리
 				</a>
 			</li>

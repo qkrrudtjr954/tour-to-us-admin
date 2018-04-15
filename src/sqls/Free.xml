@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Free">
+
+	<!-- 카테고리 추가 -->
+	<select id="getAllFree" resultType="www.toursAdmin.com.model.CommuFreeBbsDto">
+		SELECT *FROM FREEBBS
+	</select>
+	
+	<select id="getFreeDetail" parameterType="int" resultType="www.toursAdmin.com.model.CommuFreeBbsDto">
+		SELECT *FROM FREEBBS
+		WHERE SEQ=#{seq}
+	</select>
+	
+	<update id="deleteFree" parameterType="int">
+		UPDATE FREEBBS SET STATUS=2
+		WHERE SEQ=#{seq}
+	</update>
+</mapper>
