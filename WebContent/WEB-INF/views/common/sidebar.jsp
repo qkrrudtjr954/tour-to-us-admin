@@ -39,7 +39,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="" id="upload"> 
+				<a class="nav-link" href="dataUpload.do" id="upload"> 
 					<span data-feather="book"></span>자료 업로드 
 				</a>
 			</li>
