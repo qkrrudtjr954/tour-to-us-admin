@@ -39,16 +39,17 @@
 	<!-- DataUpload -->
 	<definition name="uploadList.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/upload/index.jsp"/>
-	</definition>
-	
+	</definition>	
 	<definition name="uploadDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/upload/detail.jsp"/>
-	</definition>
-	
+	</definition>	
 	<definition name="uploadInsert.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/upload/insert.jsp"/>
 	</definition>
 
-	
+	<!-- Review Manager -->
+	<definition name="reviewManager.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/review/index.jsp"/>
+	</definition>
 	
 </tiles-definitions>

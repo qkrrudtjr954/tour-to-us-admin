@@ -24,7 +24,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="" id="review"> 
+				<a class="nav-link" href="reviewManager.do" id="review"> 
 					<span data-feather="book"></span>여행 후기 관리
 				</a>
 			</li>
