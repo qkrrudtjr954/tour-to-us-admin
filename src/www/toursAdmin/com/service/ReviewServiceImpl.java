@@ -19,4 +19,16 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDao.getAllReview();
 	}
 
+	@Override
+	public CommuAfterBbsDto getReviewDetail(int seq) {
+		// TODO Auto-generated method stub
+		return reviewDao.getReviewDetail(seq);
+	}
+
+	@Override
+	public CommuAfterBbsDto deleteReview(int seq) {
+		reviewDao.deleteReview(seq);
+		return reviewDao.getReviewDetail(seq);
+	}
+
 }

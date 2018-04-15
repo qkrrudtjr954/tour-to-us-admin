@@ -51,5 +51,8 @@
 	<definition name="reviewManager.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/review/index.jsp"/>
 	</definition>
+	<definition name="reviewDetail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/review/detail.jsp"/>
+	</definition>
 	
 </tiles-definitions>

@@ -37,7 +37,10 @@
 									<button class="btn btn-primary" onclick="changeStatus(this, ${review.seq})">공개</button>
 								</c:when>
 								<c:when test="${review.status == 1 }">
-									<button class="btn btn-danger disabled">삭제됨</button>
+									<button class="btn btn-danger disabled">user삭제</button>
+								</c:when>
+								<c:when test="${review.status == 2 }">
+									<button class="btn btn-danger disabled">admin삭제</button>
 								</c:when>
 							</c:choose>
 						</td>

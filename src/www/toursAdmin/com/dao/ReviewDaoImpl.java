@@ -22,4 +22,17 @@ public class ReviewDaoImpl implements ReviewDao {
 		return sqlSession.selectList(namespace+"getAllReview");
 	}
 
+	@Override
+	public CommuAfterBbsDto getReviewDetail(int seq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"getReviewDetail", seq);
+	}
+
+	@Override
+	public void deleteReview(int seq) {
+		sqlSession.update(namespace+"deleteReview", seq);
+		
+	}
+
+	
 }

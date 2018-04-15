@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.toursAdmin.com.model.CommuAfterBbsDto;
 import www.toursAdmin.com.service.ReviewService;
@@ -31,4 +32,21 @@ public class ReviewController {
 		return "reviewManager.tiles";
 	}
 	
+	@RequestMapping(value="reviewDetail.do", method=RequestMethod.GET)
+	public String reviewDetail(Model model, int seq)throws Exception {
+		CommuAfterBbsDto review = reviewService.getReviewDetail(seq);
+		
+		model.addAttribute("menu_id", "review");
+		model.addAttribute("doc_title", "여행 후기 상세보기");
+		model.addAttribute("review", review);
+		
+		return "reviewDetail.tiles";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="reviewDelete.do", method=RequestMethod.GET)
+	public CommuAfterBbsDto reviewDelete(int seq)throws Exception{
+		CommuAfterBbsDto review = reviewService.deleteReview(seq);
+		return review;
+	}
 }

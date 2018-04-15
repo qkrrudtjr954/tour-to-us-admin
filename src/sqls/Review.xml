@@ -6,4 +6,14 @@
 	<select id="getAllReview" resultType="www.toursAdmin.com.model.CommuAfterBbsDto">
 		SELECT * FROM AFTERBBS
 	</select>
+	
+	<select id="getReviewDetail" parameterType="int" resultType="www.toursAdmin.com.model.CommuAfterBbsDto">
+		SELECT * FROM AFTERBBS 
+		WHERE SEQ=#{seq}
+	</select>
+	
+	<update id="deleteReview" parameterType="int">
+		UPDATE AFTERBBS SET STATUS=2
+		WHERE SEQ=#{seq}
+	</update>
 </mapper>
