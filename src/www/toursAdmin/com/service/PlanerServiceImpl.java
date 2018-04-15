@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import www.toursAdmin.com.dao.PlanerDao;
 import www.toursAdmin.com.model.DayPlanerDto;
+import www.toursAdmin.com.model.Korea;
 import www.toursAdmin.com.model.PlanerDto;
 import www.toursAdmin.com.model.TimePlanerDto;
 
@@ -53,6 +54,12 @@ public class PlanerServiceImpl implements PlanerService{
 		});
 		
 		return subPlaners;
+	}
+
+	@Override
+	public List<Korea> getKoreaList() {
+		// TODO Auto-generated method stub
+		return planerDao.getKoreaList();
 	}
 
 }

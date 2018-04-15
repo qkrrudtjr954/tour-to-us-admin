@@ -35,4 +35,20 @@
 	<definition name="eventInsert.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/event/insert.jsp"/>
 	</definition>
+	
+	<!-- DataUpload -->
+	<definition name="uploadList.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/upload/index.jsp"/>
+	</definition>
+	
+	<definition name="uploadDetail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/upload/detail.jsp"/>
+	</definition>
+	
+	<definition name="uploadInsert.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/upload/insert.jsp"/>
+	</definition>
+
+	
+	
 </tiles-definitions>

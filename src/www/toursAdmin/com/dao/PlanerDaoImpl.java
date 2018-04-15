@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import www.toursAdmin.com.model.DayPlanerDto;
+import www.toursAdmin.com.model.Korea;
 import www.toursAdmin.com.model.PlanerDto;
 import www.toursAdmin.com.model.TimePlanerDto;
 
@@ -40,6 +41,12 @@ public class PlanerDaoImpl implements PlanerDao{
 	@Override
 	public List<TimePlanerDto> getTimePlanerByDayPlanerSeqAndDay(int seq) {
 		return sqlSession.selectList(namespace + "getTimePlanerByDayPlanerSeqAndDay", seq);
+	}
+
+	@Override
+	public List<Korea> getKoreaList() {
+		// 등록된 한국 행정구역을 가져온다.
+		return sqlSession.selectList(namespace + "getKorea");
 	}
 	
 }

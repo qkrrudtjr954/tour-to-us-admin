@@ -23,4 +23,8 @@
 	<select id="getTimePlanerByDayPlanerSeqAndDay" parameterType="int" resultType="www.toursAdmin.com.model.TimePlanerDto">
 		SELECT * FROM TIMEPLANER WHERE TARGET_DAYPLANER_SEQ = #{seq}
 	</select>
+	
+	<select id="getKorea" resultType="www.toursAdmin.com.model.Korea">
+		SELECT * FROM KOREA
+	</select>
 </mapper>

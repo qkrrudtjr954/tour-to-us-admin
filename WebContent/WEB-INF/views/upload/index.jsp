@@ -1,80 +1,69 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<fmt:requestEncoding value="UTF-8" />
 
-<style>
-h2 {
-    display: block;
-    font-size: 2rem;
-    -webkit-margin-before: 0.83em;
-    -webkit-margin-after: 0.83em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-   
-} 
-</style>
-
-<div class="toto-title">
-	<div class="offset-md-2 col-md-6 col-xs-12">
-		<h2 class="guide-title">가이드북 작성</h2>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+	<h1 class="h2">Dashboard</h1>
+	<div class="btn-toolbar mb-2 mb-md-0">
+		<div class="btn-group mr-2">
+			<button class="btn btn-sm btn-outline-secondary">Share</button>
+			<button class="btn btn-sm btn-outline-secondary">Export</button>
+		</div>
+		<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+			<span data-feather="calendar"></span> This week
+		</button>
 	</div>
 </div>
-<div class="offset-md-2  col-md-8 col-xs-12">
-	<hr>
-</div>
 
-<div class="offset-md-3">
-<form name="frmForm" id="_frmForm" action="toto_upload.do" method="post" enctype="multipart/form-data">
-	<%-- <input type="hidden" name="seq" value="${ }"> --%>
-	<div class="row">
-		<div class="col-md-6">
-			<label class="input-title">제목</label>
-			<input type="text" name="title">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<label class="input-file">파일</label>
-			<input type="file" name="fileload">
-		</div>
-	</div>
-	<!-- <div class="row">
-		<div class="col-md-6">
-			<label class="input-pic">사진</label>
-			<input type="file" name="fileload">
-		</div>
-	</div> -->
-	<div class="row">
-		<div class="col-md-10">
-			<label class="input-location">지역</label>
-			<select class="form-control" id="location" name="location" style="width: 200px">
-				<c:forEach var="part" items="${korea }">
-					<option>${part.name }</option>
+<div class="row no-gutters">
+	<div class="table-responsive">
+		<table class="table table-striped table-sm" id="myTable">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>자료 제목</th>
+					<th>자료 지역</th>
+					<th>파일 이름</th>
+					<th>상세보기</th>
+					<th>상태 변경</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${uploadlist }" var="upload" varStatus="i">
+					<tr>
+						<td>${i.index }</td>
+						<td>${upload.title }</td>
+						<td>${upload.location }</td>
+						<td>${upload.filename }</td>
+						<td><button class="btn btn-primary" onclick="moveToDetail(${upload.seq})">Detail</button></td>
+						<td>
+							<c:choose>
+								<c:when test="${upload.status == 0 }">
+									<button class="btn btn-primary" onclick="changeStatus(this, ${upload.seq})">공개</button>
+								</c:when>
+								<c:when test="${upload.status == 1 }">
+									<button class="btn btn-danger disabled">삭제됨</button>
+								</c:when>
+							</c:choose>
+						</td>
+					</tr>
 				</c:forEach>
-			</select>
-		</div>
+			</tbody>
+		</table>
 	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<label class="input-content">내용</label>
-			<textarea rows="10" cols="50" 	name="content" id="_content"></textarea>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<!-- <span><a href="#none" id="_btnLogin" title="글쓰기" class="btn btn-outline-secondary">글쓰기</a></span> -->
-			<input type="submit" value="업로드"> 
-		</div>
-	</div>
-</form>
 </div>
 
-<script>
-$("#_btnLogin").click(function() {	
-	alert('글쓰기');	
-	$("#_frmForm").submit();
-});
+<div class="d-flex justify-content-center">
+	<a class="btn btn-lg btn-primary" href="uploadInsert.do">자료 업로드하기</a>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#myTable').DataTable({
+			"order" : [ [ 0, "desc" ] ]
+		});
+	});
+	
+	function moveToDetail(seq) {
+		location.href = 'uploadDetail.do?seq='+seq;
+	}
 </script>

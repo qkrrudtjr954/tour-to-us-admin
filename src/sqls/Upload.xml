@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Upload">
+
+	<select id="getTotoList" resultType="www.toursAdmin.com.model.TotoGuideDto">
+		SELECT * FROM TOTOGUIDE ORDER BY REG_DATE DESC
+	</select>
+
+	<select id="getUploadDetail" parameterType="int" resultType="www.toursAdmin.com.model.TotoGuideDto">
+		SELECT * FROM TOTOGUIDE
+		WHERE SEQ=#{seq}
+	</select>
+	
+	<update id="deleteUpload" parameterType="int">
+		UPDATE TOTOGUIDE SET STATUS=2
+		WHERE SEQ=#{seq}
+	</update>
+	
+	<update id="updateStatus" parameterType="www.toursAdmin.com.model.TotoGuideDto">
+		UPDATE TOTOGUIDE SET STATUS=#{status} WHERE SEQ=#{seq}
+	</update>
+	
+	<insert id="dataUpload" parameterType="www.toursAdmin.com.model.TotoGuideDto">
+		INSERT INTO TOTOGUIDE(SEQ, TITLE, CONTENT, PIC, LOCATION, FILENAME, READCOUNT, DOWNCOUNT, REG_DATE, LAST_UPDATED, STATUS)
+		VALUES(TOTOGUIDE_SEQ.NEXTVAL, #{title}, #{content}, './image/book.jpg', #{location}, #{filename}, 0, 0, SYSDATE, SYSDATE, 0)
+	</insert>
+</mapper>

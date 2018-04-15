@@ -1,19 +1,23 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<fmt:requestEncoding value="UTF-8" />
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
 
 
 <style>
-	.event-form-label{
+	.upload-form-label{
 		font-size: 20px;
 		font-weight: 500;
 		width: 20%;
 		border-bottom: 2px solid gray;
 	}
 	
-	.eventForm div.form-group {
+	.uploadForm div.form-group {
 		margin-bottom: 20px;
 	}
 </style>
@@ -32,54 +36,41 @@
 
 <div class="row no-gutters">
 	<div class="offset-md-3 col-md-6">
-		<form action="eventInsert.do" method="POST" class="eventForm">
+		<form action="uploadInsertAf.do" method="POST" class="uploadForm" enctype="multipart/form-data">
 			<div class="form-group">
-				<label class="event-form-label" for="title">이벤트 제목</label> 
-				<input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Title"> 
+				<label class="upload-form-label" for="title">자료 제목</label> 
+				<input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp" placeholder="Title"> 
 			</div>
 			
 			<div class="form-group">
-				<label class="event-form-label" for="title">카테고리</label> 
-				<select class="custom-select" name="category">
-					<option hidden="true">카테고리 선택</option>
-					<option value="호텔">호텔</option>
-					<option value="관광">관광</option>
-					<option value="항공">항공</option>
-				</select>
+				<label class="upload-form-label" for="title">파일</label>
+				<br> 
+				<input type="file" name="fileload">
+			</div>
+			
+			<!-- <div class="form-group">
+				<label class="upload-form-label" for="title">사진</label> 
+				<input type="file" name="fileload">
+			</div> -->
+	
+			<div class="form-group">
+				<label class="upload-form-label" for="title">지역</label> 
+				<select class="form-control" id="location" name="location" style="width: 200px">
+				<c:forEach var="part" items="${korea }">
+					<option>${part.name }</option>
+				</c:forEach>
+			</select>
 			</div>
 	
 			<div class="form-group">
-				<label class="event-form-label" for="title">공개 여부</label> 
-				<div class="d-flex justify-content-around">
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="status" id="status1" value="0">
-						<label class="form-check-label" for="inlineRadio1">공개</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="status" id="status2" value="1">
-						<label class="form-check-label" for="inlineRadio2">비공개</label>
-					</div>
-				</div>
-			</div>
-	
-			<div class="form-group">
-				<label class="event-form-label" for="title">이벤트 기간</label> 
-				<div class="d-flex justify-content-around">
-					<input type="date" name="from_date" class="form-control">
-					<span style="font-size: 20px;margin:0px 10px;"> ~ </span>
-					<input type="date" name="to_date" class="form-control">
-				</div>
-			</div>
-	
-			<div class="form-group">
-				<label class="event-form-label" for="title">내용</label> 
+				<label class="upload-form-label" for="title">내용</label> 
 				<div class="row no-gutters">
 					<textarea id="summernote" name="content"></textarea>
 				</div>
 			</div>
 			
 			<div class="d-flex justify-content-center">
-				<input class="btn btn-primary btn-lg" type="submit" value="이벤트 등록하기">
+				<input class="btn btn-primary btn-lg" type="submit" value="자료 등록하기">
 			</div>
 		</form>
 	</div>

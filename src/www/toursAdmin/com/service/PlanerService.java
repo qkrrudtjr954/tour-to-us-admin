@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import www.toursAdmin.com.model.DayPlanerDto;
+import www.toursAdmin.com.model.Korea;
 import www.toursAdmin.com.model.PlanerDto;
 import www.toursAdmin.com.model.TimePlanerDto;
 
@@ -20,5 +21,7 @@ public interface PlanerService {
 	List<TimePlanerDto> getTimePlanerByDayPlanerSeqAndDay(int seq);
 
 	Map<DayPlanerDto, List<TimePlanerDto>> getSubPlaners(int seq);
+	
+	public List<Korea> getKoreaList();
 
 }
