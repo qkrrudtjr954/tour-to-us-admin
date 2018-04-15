@@ -135,7 +135,7 @@
 	$("#deleteBtn").on('click', function () {
 		if(confirm('정말 삭제하시겠습니까?')){
 			$.ajax({
-				url: 'guideDelete.do',
+				url: 'todoongGuideDelete.do',
 				data: { seq : ${guide.seq} },
 				method: 'GET',
 				success: function (data) {

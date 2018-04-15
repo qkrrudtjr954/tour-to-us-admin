@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import www.toursAdmin.com.model.PlanerDto;
+import www.toursAdmin.com.model.ToditorBBS;
 
 @Repository
 public class GuideDaoImpl implements GuideDao {
@@ -22,7 +23,13 @@ public class GuideDaoImpl implements GuideDao {
 	}
 
 	@Override
-	public void deleteGuide(int seq) {
-		sqlSession.update(namespace+"deleteGuide", seq);
+	public void deleteTodoongGuide(int seq) {
+		sqlSession.update(namespace+"deleteTodoongGuide", seq);
+	}
+
+	@Override
+	public List<ToditorBBS> getAllToditorGuide() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"getAllToditorGuide");
 	}
 }

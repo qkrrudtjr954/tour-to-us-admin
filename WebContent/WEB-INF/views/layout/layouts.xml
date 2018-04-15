@@ -67,8 +67,15 @@
 	<definition name="todoongManager.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/todoongGuide/index.jsp"/>
 	</definition>
-	<definition name="guideDetail.tiles" extends="main.tiles">
+	<definition name="todoongGuideDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/todoongGuide/detail.jsp"/>
+	</definition>
+	
+	<definition name="toditorManager.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/toditorGuide/index.jsp"/>
+	</definition>
+	<definition name="toditorGuideDetail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/toditorGuide/detail.jsp"/>
 	</definition>
 	
 </tiles-definitions>

@@ -7,7 +7,11 @@
 		SELECT * FROM PLANER	
 	</select>
 	
-	<update id="deleteGuide" parameterType="int">
+	<update id="deleteTodoongGuide" parameterType="int">
 		UPDATE PLANER SET STATUS=4 WHERE SEQ = #{seq}
 	</update>
+	
+	<select id="getAllToditorGuide" resultType="www.toursAdmin.com.model.ToditorBBS">
+		SELECT * FROM EDITOR
+	</select>
 </mapper>

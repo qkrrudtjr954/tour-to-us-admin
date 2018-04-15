@@ -21,36 +21,26 @@
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>투둥이 제목</th>
-					<th>여행 지역</th>
-					<th>여행기간</th>
+					<th>투디터 제목</th>
 					<th>상세 보기</th>
 					<th>공개 여부</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${todoonglist }" var="todoong" varStatus="i">
+				<c:forEach items="${toditorlist }" var="toditor" varStatus="i">
 					<tr>
 						<td>${i.index }</td>
-						<td>${todoong.title }</td>
-						<td>${todoong.location }</td>
-						<td>${todoong.from_date } ~ ${todoong.to_date }</td>
-						<td><button class="btn btn-success" onclick="moveToDetail(${todoong.seq})">Detail</button></td>
+						<td>${toditor.title }</td>
+						<td><button class="btn btn-success" onclick="moveToDetail(${toditor.seq})">Detail</button></td>
 						<td>
 							<c:choose>
-								<c:when test="${todoong.status == 0 }">
-									<button class="btn btn-secondary">진행중</button>
-								</c:when>
-								<c:when test="${todoong.status == 1 }">
+								<c:when test="${toditor.status == 0 }">
 									<button class="btn btn-primary">공개</button>
 								</c:when>
-								<c:when test="${todoong.status == 2 }">
-									<button class="btn btn-primary">비공개</button>
-								</c:when>
-								<c:when test="${todoong.status == 3 }">
+								<c:when test="${toditor.status == 1 }">
 									<button class="btn btn-danger disabled">user삭제</button>
 								</c:when>
-								<c:when test="${todoong.status == 4 }">
+								<c:when test="${toditor.status == 2 }">
 									<button class="btn btn-danger disabled">admin삭제</button>	</c:when>
 							</c:choose>
 						</td>
@@ -69,6 +59,6 @@
 		});
 	});
 	function moveToDetail(seq) {
-		location.href = 'todoongGuideDetail.do?seq='+seq;
+		location.href = 'toditorGuideDetail.do?seq='+seq;
 	}
 </script>

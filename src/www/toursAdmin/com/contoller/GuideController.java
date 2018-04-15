@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import www.toursAdmin.com.model.DayPlanerDto;
 import www.toursAdmin.com.model.PlanerDto;
 import www.toursAdmin.com.model.TimePlanerDto;
+import www.toursAdmin.com.model.ToditorBBS;
 import www.toursAdmin.com.model.TravelerDto;
 import www.toursAdmin.com.service.GuideService;
 import www.toursAdmin.com.service.PlanerService;
@@ -39,7 +40,7 @@ public class GuideController {
 		return "todoongManager.tiles";
 	}
 	
-	@RequestMapping(value="guideDetail.do", method=RequestMethod.GET)
+	@RequestMapping(value="todoongGuideDetail.do", method=RequestMethod.GET)
 	public String guideDetail(Model model, int seq)throws Exception{
 		PlanerDto planer = planerService.getPlanerBySea(seq);
 		List<DayPlanerDto> dayPlaners = planerService.getDayPlanerByTargetPlanerSeq(seq);
@@ -55,15 +56,25 @@ public class GuideController {
 		model.addAttribute("subPlaners", subPlaners);
 		model.addAttribute("traveler", traveler);
 		
-		return "guideDetail.tiles";
+		return "todoongGuideDetail.tiles";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="guideDelete.do", method=RequestMethod.GET)
+	@RequestMapping(value="todoongGuideDelete.do", method=RequestMethod.GET)
 	public PlanerDto guideDelete(Model model, int seq)throws Exception{
-		PlanerDto planer = guideService.deleteGuide(seq);		
+		PlanerDto planer = guideService.deleteTodoongGuide(seq);		
 		return planer;
 	}
 	
+	@RequestMapping(value="toditorManager.do", method=RequestMethod.GET)
+	public String toditorManager(Model model)throws Exception{
+		List<ToditorBBS> list = guideService.getAllToditorGuide();
 		
+		model.addAttribute("menu_id", "guide");
+		model.addAttribute("doc_title", "가이드 관리");
+		model.addAttribute("toditorlist", list);
+		
+		return "toditorManager.tiles";
+	}
+	
 }
