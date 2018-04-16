@@ -19,7 +19,7 @@
 	<div class="offset-md-2 col-md-8">
 		<div class="event-container">
 			<div class="event-title d-flex justify-content-center align-items-center">
-				<span class="badge badge-pill" style="background-color: #7DC3BB; color: #fff">${event.category }</span>&nbsp;&nbsp;
+				<span class="badge badge-pill" style="background-color: #7DC3BB; color: #fff">${toditor.category }</span>&nbsp;&nbsp;
 				<h1>${toditor.title }</h1>
 			</div>
 			<hr>

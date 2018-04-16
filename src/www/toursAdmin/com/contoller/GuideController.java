@@ -87,4 +87,12 @@ public class GuideController {
 		return "toditorGuideDetail.tiles";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="toditorGuideDelete.do", method=RequestMethod.GET)
+	public ToditorBBS toditorGuideDelete(Model model, int seq)throws Exception{
+		ToditorBBS toditor = guideService.deleteToditorGuide(seq);
+		
+		return toditor;
+	}
+	
 }

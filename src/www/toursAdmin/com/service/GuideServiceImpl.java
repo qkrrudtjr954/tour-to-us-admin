@@ -41,4 +41,10 @@ public class GuideServiceImpl implements GuideService {
 		// TODO Auto-generated method stub
 		return guideDao.toditorGuideDetail(seq);
 	}
+
+	@Override
+	public ToditorBBS deleteToditorGuide(int seq) {
+		guideDao.deleteToditorGuide(seq);
+		return guideDao.toditorGuideDetail(seq);
+	}
 }

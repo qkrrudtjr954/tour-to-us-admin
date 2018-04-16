@@ -10,4 +10,5 @@ public interface GuideService {
 	public PlanerDto deleteTodoongGuide(int seq);
 	public List<ToditorBBS> getAllToditorGuide();
 	public ToditorBBS toditorGuideDetail(int seq);
+	public ToditorBBS deleteToditorGuide(int seq)
 }

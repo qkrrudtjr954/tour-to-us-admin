@@ -38,4 +38,10 @@ public class GuideDaoImpl implements GuideDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"toditorGuideDetail", seq);
 	}
+
+	@Override
+	public void deleteToditorGuide(int seq) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+"deleteToditorGuide", seq);
+	}
 }

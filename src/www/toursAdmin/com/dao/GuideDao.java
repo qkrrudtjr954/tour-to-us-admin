@@ -10,4 +10,5 @@ public interface GuideDao {
 	void deleteTodoongGuide(int seq);
 	List<ToditorBBS> getAllToditorGuide();
 	ToditorBBS toditorGuideDetail(int seq);
+	void deleteToditorGuide(int seq);
 }

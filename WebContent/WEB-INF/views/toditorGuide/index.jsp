@@ -22,6 +22,7 @@
 				<tr>
 					<th>No</th>
 					<th>투디터 제목</th>
+					<th>카테고리</th>
 					<th>상세 보기</th>
 					<th>공개 여부</th>
 				</tr>
@@ -31,6 +32,7 @@
 					<tr>
 						<td>${i.index }</td>
 						<td>${toditor.title }</td>
+						<td>${toditor.category }</td>
 						<td><button class="btn btn-success" onclick="moveToDetail(${toditor.seq})">Detail</button></td>
 						<td>
 							<c:choose>
