@@ -32,29 +32,12 @@ public class CommuFreeBbsDto implements Serializable {
 	private String prev_title;
 	private int comment_count;
 	
-	
+	private String category;
 	
 	
 	public CommuFreeBbsDto() {
 		// TODO Auto-generated constructor stub
 	}
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
 
 
 	public CommuFreeBbsDto(int seq, int target_category_seq, int target_user_seq, String title, String content,
@@ -86,24 +69,6 @@ public class CommuFreeBbsDto implements Serializable {
 		this.prev_title = prev_title;
 		this.comment_count = comment_count;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	public int getSeq() {
 		return seq;
@@ -535,18 +500,14 @@ public class CommuFreeBbsDto implements Serializable {
 
 
 
+	public String getCategory() {
+		return category;
+	}
 
 
-
-
-
-
-
-
-
-
-
-
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 
 	@Override
@@ -563,36 +524,6 @@ public class CommuFreeBbsDto implements Serializable {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

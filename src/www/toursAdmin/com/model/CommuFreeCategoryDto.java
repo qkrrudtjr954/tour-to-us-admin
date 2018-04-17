@@ -10,6 +10,7 @@ public class CommuFreeCategoryDto implements Serializable {
 	private int status;
 	private String reg_date;
 	private String last_updated;
+
 	
 	//추가
 		private String profile;
@@ -23,7 +24,9 @@ public class CommuFreeCategoryDto implements Serializable {
 
 	
 	
-	
+	public CommuFreeCategoryDto() {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	public CommuFreeCategoryDto(int seq, String title, String description, int status, String reg_date,

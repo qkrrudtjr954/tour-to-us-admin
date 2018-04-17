@@ -19,11 +19,8 @@
 	<div class="offset-md-2 col-md-8">
 		<div class="event-container">
 			<div class="event-title d-flex justify-content-center align-items-center">
-				<span class="badge badge-pill" style="background-color: #7DC3BB; color: #fff">${event.category }</span>&nbsp;&nbsp;
+				<span class="badge badge-pill" style="background-color: #7DC3BB; color: #fff">${free.category }</span>&nbsp;&nbsp;
 				<h1>${free.title }</h1>
-			</div>
-			<div class="event-range text-right">
-			${free.target_category_seq }
 			</div>
 			<hr>
 			<div class="event-content">

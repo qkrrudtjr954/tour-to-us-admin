@@ -3,14 +3,20 @@
 
 <mapper namespace="Free">
 
-	<!-- 카테고리 추가 -->
 	<select id="getAllFree" resultType="www.toursAdmin.com.model.CommuFreeBbsDto">
-		SELECT *FROM FREEBBS
+		SELECT*FROM
+		(SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ,(SELECT TITLE FROM FREECATEGORY WHERE SEQ = F.TARGET_CATEGORY_SEQ) AS CATEGORY, 
+    	F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL, T.PROFILE        
+      	FROM FREEBBS F, TRAVELER T
+		WHERE  F.TARGET_USER_SEQ = T.SEQ)
 	</select>
 	
 	<select id="getFreeDetail" parameterType="int" resultType="www.toursAdmin.com.model.CommuFreeBbsDto">
-		SELECT *FROM FREEBBS
-		WHERE SEQ=#{seq}
+		SELECT*FROM
+		(SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ,(SELECT TITLE FROM FREECATEGORY WHERE SEQ = F.TARGET_CATEGORY_SEQ) AS CATEGORY, 
+    	F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL, T.PROFILE        
+      	FROM FREEBBS F, TRAVELER T
+		WHERE  F.TARGET_USER_SEQ = T.SEQ)WHERE  SEQ=#{seq}
 	</select>
 	
 	<update id="deleteFree" parameterType="int">

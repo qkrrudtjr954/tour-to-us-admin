@@ -21,6 +21,7 @@
 				<tr>
 					<th>No</th>
 					<th>자유게시판 제목</th>
+					<th>카테고리</th>
 					<th>상세보기</th>
 					<th>상태 변경</th>
 				</tr>
@@ -30,6 +31,7 @@
 					<tr>
 						<td>${i.index }</td>
 						<td>${free.title }</td>
+						<td>${free.category }</td>
 						<td><button class="btn btn-primary" onclick="moveToDetail(${free.seq})">Detail</button></td>
 						<td>
 							<c:choose>
