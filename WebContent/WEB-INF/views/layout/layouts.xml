@@ -16,6 +16,9 @@
 	<definition name="travelerDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/traveler/detail.jsp"/>
 	</definition>
+	<definition name="userLevel.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/traveler/level.jsp"/>
+	</definition>
 
 	<!-- Planer Manager -->
 	<definition name="planerManager.tiles" extends="main.tiles">

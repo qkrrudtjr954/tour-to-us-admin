@@ -25,5 +25,10 @@ public class TravelerDaoImpl implements TravelerDao{
 		return sqlSession.selectOne(namespace + "getTravelerBySeq", seq);
 	}
 
+	@Override
+	public List<TravelerDto> getTopRankTraveler() {
+		return sqlSession.selectList(namespace + "getTopRankTraveler");
+	}
+
 	
 }

@@ -11,4 +11,7 @@
 		SELECT * FROM TRAVELER WHERE SEQ = #{seq}
 	</select>
 	
+	<select id="getTopRankTraveler" resultType="www.toursAdmin.com.model.TravelerDto">
+		<!-- not yet -->
+	</select>
 </mapper>

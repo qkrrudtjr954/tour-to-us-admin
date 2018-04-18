@@ -23,4 +23,9 @@ public class TravelerServiceImpl implements TravelerService{
 		return travelerDao.getTravelerBySeq(seq);
 	}
 
+	@Override
+	public List<TravelerDto> getTopRankTraveler() {
+		return travelerDao.getTopRankTraveler();
+	}
+
 }

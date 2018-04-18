@@ -38,4 +38,14 @@ public class TravelerController {
 		model.addAttribute("traveler", traveler);
 		return "travelerDetail.tiles";
 	}
+	
+	@RequestMapping(value="userLevel.do", method=RequestMethod.GET)
+	public String userLevel(Model model) {
+		model.addAttribute("doc_title", "유저 진급하기");
+		model.addAttribute("menu_id", "level");
+		
+		List<TravelerDto> travelerList = travelerService.getTopRankTraveler();
+		
+		return "userLevel.tiles";
+	}
 }

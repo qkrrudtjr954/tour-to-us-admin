@@ -10,4 +10,6 @@ public interface TravelerDao {
 
 	TravelerDto getTravelerBySeq(int seq);
 
+	List<TravelerDto> getTopRankTraveler();
+
 }

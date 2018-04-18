@@ -10,4 +10,6 @@ public interface TravelerService {
 
 	TravelerDto getTravelerBySeq(int seq);
 
+	List<TravelerDto> getTopRankTraveler();
+
 }

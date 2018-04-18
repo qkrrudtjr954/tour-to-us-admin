@@ -43,6 +43,11 @@
 					<span data-feather="book"></span>자료 업로드 
 				</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="userLevel.do" id="level"> 
+					<span data-feather="star"></span>진급하기  
+				</a>
+			</li>
 		</ul>
 		
 		<script type="text/javascript">
