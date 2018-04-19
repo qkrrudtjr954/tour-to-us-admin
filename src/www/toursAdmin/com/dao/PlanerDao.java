@@ -22,4 +22,6 @@ public interface PlanerDao {
 	
 	List<Korea> getKoreaList();
 
+	List<PlanerDto> getPlanerByUserSeq(int seq);
+
 }

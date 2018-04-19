@@ -48,5 +48,10 @@ public class PlanerDaoImpl implements PlanerDao{
 		// 등록된 한국 행정구역을 가져온다.
 		return sqlSession.selectList(namespace + "getKorea");
 	}
+
+	@Override
+	public List<PlanerDto> getPlanerByUserSeq(int seq) {
+		return sqlSession.selectList(namespace + "getPlanerByUserSeq", seq);
+	}
 	
 }

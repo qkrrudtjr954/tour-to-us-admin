@@ -24,4 +24,6 @@ public interface PlanerService {
 	
 	public List<Korea> getKoreaList();
 
+	List<PlanerDto> getPlanerByUserSeq(int seq);
+
 }

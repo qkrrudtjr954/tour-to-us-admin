@@ -11,6 +11,11 @@
 		FROM PLANER P 
 		WHERE SEQ = #{seq}
 	</select>
+	
+	
+	<select id="getPlanerByUserSeq" resultType="www.toursAdmin.com.model.PlanerDto">
+		SELECT * FROM PLANER WHERE TARGET_USER_SEQ = #{seq}
+	</select>
 
 	<update id="deletePlaner" parameterType="int">
 		UPDATE PLANER SET STATUS = 4 WHERE SEQ = #{seq}

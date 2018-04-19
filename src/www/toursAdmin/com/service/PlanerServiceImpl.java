@@ -62,4 +62,9 @@ public class PlanerServiceImpl implements PlanerService{
 		return planerDao.getKoreaList();
 	}
 
+	@Override
+	public List<PlanerDto> getPlanerByUserSeq(int seq) {
+		return planerDao.getPlanerByUserSeq(seq);
+	}
+
 }

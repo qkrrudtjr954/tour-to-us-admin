@@ -1,10 +1,7 @@
 package www.toursAdmin.com.contoller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-import org.apache.tiles.autotag.core.runtime.annotation.Parameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +13,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.toursAdmin.com.model.LevelDto;
+import www.toursAdmin.com.model.PlanerDto;
 import www.toursAdmin.com.model.TravelerDto;
+import www.toursAdmin.com.service.PlanerService;
 import www.toursAdmin.com.service.TravelerService;
 
 @Controller
 public class TravelerController {
 	@Autowired
 	TravelerService travelerService;
+	@Autowired
+	PlanerService planerService;
 	
 	Logger logger = LoggerFactory.getLogger(TravelerController.class);
 	
@@ -40,7 +41,11 @@ public class TravelerController {
 		TravelerDto traveler = travelerService.getTravelerBySeq(seq);
 		model.addAttribute("doc_title", "유저 상세보기");
 		model.addAttribute("menu_id", "traveler");
+		
 		model.addAttribute("traveler", traveler);
+		
+		List<PlanerDto> planerList = planerService.getPlanerByUserSeq(seq);
+		model.addAttribute("planers", planerList);
 		return "travelerDetail.tiles";
 	}
 	

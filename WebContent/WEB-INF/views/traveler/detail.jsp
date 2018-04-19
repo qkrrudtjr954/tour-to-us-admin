@@ -57,6 +57,32 @@
 		</table>
 	</div>
 </div>
+<div class="row no-gutters">
+	<div class="table-responsive">
+		<table class="table table-striped table-sm" id="planerTable">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>플래너 제목</th>
+					<th>여행 지역</th>
+					<th>여행 기간</th>
+					<th>상세보기</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${planers }" var="planer" varStatus="i">
+					<tr>
+						<td>${i.index }</td>
+						<td>${planer.title }</td>
+						<td>${planer.location }</td>
+						<td>${planer.from_date } ~ ${planer.to_date }</td>
+						<td><button class="btn btn-primary" onclick="moveToDetail(${planer.seq})">Detail</button></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+</div>
 
 <script type="text/javascript">
 $('#upgradeBtn').on('click', function () {
@@ -91,4 +117,13 @@ $('#downgradeBtn').on('click', function () {
 		}
 	})
 })
+$(document).ready(function() {
+	$('#planerTable').DataTable({
+		"order" : [ [ 0, "desc" ] ]
+	});
+});
+
+function moveToDetail(seq) {
+	location.href = 'planerDetail.do?seq='+seq;
+}
 </script>

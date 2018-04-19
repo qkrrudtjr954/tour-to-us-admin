@@ -15,12 +15,12 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="planerManager.do" id="planer"> 
-					<span data-feather="book"></span>플래너 관리
+					<span data-feather="send"></span>플래너 관리
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="eventManager.do" id="event"> 
-					<span data-feather="book"></span>이벤트 관리
+					<span data-feather="gift"></span>이벤트 관리
 				</a>
 			</li>
 			<li class="nav-item">
@@ -30,22 +30,22 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="freeManager.do" id="free"> 
-					<span data-feather="book"></span>자유 게시판 관리
+					<span data-feather="align-center"></span>자유 게시판 관리
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="todoongManager.do" id="guide"> 
-					<span data-feather="book"></span>가이드 관리
+					<span data-feather="book-open"></span>가이드 관리
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="dataUploadList.do" id="upload"> 
-					<span data-feather="book"></span>자료 업로드 
+					<span data-feather="upload"></span>자료 업로드 
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="userLevel.do" id="level"> 
-					<span data-feather="star"></span>진급하기  
+					<span data-feather="award"></span>진급하기  
 				</a>
 			</li>
 		</ul>
@@ -55,21 +55,5 @@
 			$('.nav-item').children().removeClass('active');
 			$('#'+id).addClass('active');
 		</script>
-		
-		
-
-
-		<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-			<span>Saved reports</span> 
-			<a class="d-flex align-items-center text-muted" href="#"> 
-				<span data-feather="plus-circle"></span>
-			</a>
-		</h6>
-		<ul class="nav flex-column mb-2">
-			<li class="nav-item"><a class="nav-link" href="#"> <span data-feather="file-text"></span> Current month </a></li>
-			<li class="nav-item"><a class="nav-link" href="#"> <span data-feather="file-text"></span> Last quarter </a></li>
-			<li class="nav-item"><a class="nav-link" href="#"> <span data-feather="file-text"></span> Social engagement </a></li>
-			<li class="nav-item"><a class="nav-link" href="#"> <span data-feather="file-text"></span> Year-end sale </a></li>
-		</ul>
 	</div>
 </nav>
