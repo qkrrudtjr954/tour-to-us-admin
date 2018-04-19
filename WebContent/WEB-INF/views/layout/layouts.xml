@@ -65,6 +65,9 @@
 	<definition name="freeDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/free/detail.jsp"/>
 	</definition>
+	<definition name="freeCategory.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/freeCategory/index.jsp"/>
+	</definition>
 	
 	<!-- Guide Manager -->
 	<definition name="todoongManager.tiles" extends="main.tiles">

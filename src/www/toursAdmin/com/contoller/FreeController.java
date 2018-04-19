@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.toursAdmin.com.model.CommuFreeBbsDto;
+import www.toursAdmin.com.model.CommuFreeCategoryDto;
+import www.toursAdmin.com.model.EventDto;
 import www.toursAdmin.com.service.FreeService;
 
 @Controller
@@ -43,5 +45,32 @@ public class FreeController {
 	public CommuFreeBbsDto freeDelete(Model model, int seq)throws Exception{
 		CommuFreeBbsDto free = freeService.deleteFree(seq);
 		return free;
+	}
+	
+	@RequestMapping(value="freeCategory.do", method=RequestMethod.GET)
+	public String freeCategory(Model model)throws Exception {
+		List<CommuFreeCategoryDto> list = freeService.getCategory();
+		
+		model.addAttribute("menu_id", "free");
+		model.addAttribute("doc_title", "카테고리 관리");
+		model.addAttribute("categorylist", list);
+		
+		return "freeCategory.tiles";
+	}
+	
+	@RequestMapping(value="categoryAdd.do", method=RequestMethod.GET)
+	public String categoryAdd(Model model, CommuFreeCategoryDto categoryDto)throws Exception {
+		System.out.println(categoryDto.toString());
+		freeService.categoryInsert(categoryDto);
+		
+		return "redirect:/freeCategory.do";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="changeCategoryStatus.do", method=RequestMethod.GET)
+	public CommuFreeCategoryDto changeCategoryStatus(int seq)throws Exception{
+		System.out.println(seq);
+		CommuFreeCategoryDto result = freeService.updateStatus(seq);
+		return result;
 	}
 }
