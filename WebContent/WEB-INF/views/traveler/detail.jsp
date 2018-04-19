@@ -15,45 +15,47 @@
 </div>
 
 <div class="row no-gutters">
-	<table class="table">
-		<tr>
-			<td colspan="2">
-				<img alt="" src="${initParam.IMG_SERVER_PATH }/image/${traveler.profile}" width="50px" height="50px">
-			</td>
-		</tr>
-		<tr>
-			<th>이름</th>
-			<td>${traveler.name }</td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td>${traveler.email }</td>
-		</tr>
-		<tr>
-			<th>계급</th>
-			<td>
-				<c:choose>
-					<c:when test="${traveler.author eq 0 }">
-						투둥이 
-					</c:when>
-					<c:when test="${traveler.author eq 1 }">
-						투디터 
-					</c:when>
-					<c:otherwise>
-						누구냐 넌 
-					</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<div class="d-flex justify-content-center" style="width: 100%;">
-					<button id="upgradeBtn" class="btn btn-lg btn-success">진급하기</button>
-					<button id="downgradeBtn" class="btn btn-lg btn-danger">강등하기</button>
-				</div>
-			</td>
-		</tr>
-	</table>
+	<div class="col-md-8 offset-md-2">
+		<table class="table text-center">
+			<tr>
+				<td colspan="2">
+					<img alt="" src="${initParam.IMG_SERVER_PATH }/image/${traveler.profile}" width="150px" height="150px" style="border-radius: 50%; border: 2px solid gray;">
+				</td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td>${traveler.name }</td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td>${traveler.email }</td>
+			</tr>
+			<tr>
+				<th>계급</th>
+				<td>
+					<c:choose>
+						<c:when test="${traveler.author eq 0 }">
+							<span style="color: green;">투둥이</span>
+						</c:when>
+						<c:when test="${traveler.author eq 1 }">
+							<span style="color: blue;">투디터</span> 
+						</c:when>
+						<c:otherwise>
+							누구냐 넌 
+						</c:otherwise>
+					</c:choose>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div class="d-flex justify-content-center" style="width: 100%;">
+						<button id="upgradeBtn" class="btn btn-lg btn-success">진급하기</button>
+						<button id="downgradeBtn" class="btn btn-lg btn-danger">강등하기</button>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
 
 <script type="text/javascript">
