@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import www.toursAdmin.com.model.LevelDto;
+import www.toursAdmin.com.model.LevelParam;
 import www.toursAdmin.com.model.TravelerDto;
 
 @Repository
@@ -26,8 +28,16 @@ public class TravelerDaoImpl implements TravelerDao{
 	}
 
 	@Override
-	public List<TravelerDto> getTopRankTraveler() {
+	public List<LevelDto> getTopRankTraveler() {
 		return sqlSession.selectList(namespace + "getTopRankTraveler");
+	}
+
+	@Override
+	public boolean updateLevel(int seq, int status) {
+		LevelParam param = new LevelParam(seq, status);
+		
+		int i = sqlSession.update(namespace + "updateLevel", param);
+		return (i > 0)?true:false;
 	}
 
 	

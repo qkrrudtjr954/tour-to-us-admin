@@ -14,7 +14,7 @@
 		</button>
 	</div>
 </div>
-
+${toditor }
 <div class="row no-gutters">
 	<div class="offset-md-2 col-md-8">
 		<div class="event-container">

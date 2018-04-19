@@ -2,6 +2,7 @@ package www.toursAdmin.com.service;
 
 import java.util.List;
 
+import www.toursAdmin.com.model.LevelDto;
 import www.toursAdmin.com.model.TravelerDto;
 
 public interface TravelerService {
@@ -10,6 +11,8 @@ public interface TravelerService {
 
 	TravelerDto getTravelerBySeq(int seq);
 
-	List<TravelerDto> getTopRankTraveler();
+	List<LevelDto> getTopRankTraveler();
+
+	boolean updateLevel(int[] users, int status);
 
 }

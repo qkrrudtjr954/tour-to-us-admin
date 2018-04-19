@@ -11,7 +11,19 @@
 		SELECT * FROM TRAVELER WHERE SEQ = #{seq}
 	</select>
 	
-	<select id="getTopRankTraveler" resultType="www.toursAdmin.com.model.TravelerDto">
-		<!-- not yet -->
+	<select id="getTopRankTraveler" resultType="www.toursAdmin.com.model.LevelDto">
+		SELECT 
+			SUM(NVL((SELECT COUNT(*) FROM LIKETABLE L WHERE L.TARGET_BBS_SEQ = P.SEQ GROUP BY L.TARGET_BBS_SEQ), 0)) AS TOTAL_LIKECOUNT,
+			(SELECT T.NAME FROM TRAVELER T WHERE T.SEQ = P.TARGET_USER_SEQ) AS TARGET_USER_NAME,
+			(SELECT T.AUTHOR FROM TRAVELER T WHERE T.SEQ = P.TARGET_USER_SEQ) AS STATUS,
+			P.TARGET_USER_SEQ AS TARGET_USER_SEQ
+		FROM PLANER P 
+		WHERE P.REG_DATE >= (CURRENT_DATE-30) 
+		GROUP BY P.TARGET_USER_SEQ
+		ORDER BY TOTAL_LIKECOUNT DESC
 	</select>
+	
+	<update id="updateLevel" parameterType="www.toursAdmin.com.model.LevelParam">
+		UPDATE TRAVELER SET AUTHOR = #{status} WHERE SEQ = #{seq}
+	</update>
 </mapper>

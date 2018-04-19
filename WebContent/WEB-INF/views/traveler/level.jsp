@@ -15,23 +15,46 @@
 </div>
 
 <div class="row no-gutters">
-	<div class="table-responsive">
+	<div class="table-responsive text-center">
 		<table class="table table-striped table-sm" id="myTable">
+			<col width="5%">
+			<col width="10%">
+			<col width="30%">
+			<col width="30%">
+			<col width="25%">
 			<thead>
 				<tr>
+					<th>Check</th>
 					<th>No</th>
 					<th>이름</th>
-					<th>Email</th>
-					<th>상세보기</th>
+					<th>상태</th>
+					<th>좋아요 수</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${travelers }" var="traveler" varStatus="i">
 					<tr>
-						<td>${i.index }</td>
-						<td>${traveler.name }</td>
-						<td>${traveler.email }</td>
-						<td><button class="btn btn-primary" onclick="moveToDetail(${traveler.seq})">+</button></td>
+
+						<td>
+							<input class="traveler_seq" type="checkbox" value="${traveler.target_user_seq }">
+						</td>
+						<td>${i.index+1 } 위</td>
+						<td>${traveler.target_user_name }</td>
+						<td>
+							<c:choose>
+								<c:when test="${traveler.status eq 0 }">
+									<span style="color: green;">투둥이</span> 
+								</c:when>
+								<c:when test="${traveler.status eq 1 }">
+									<span style="color: blue;">투디터</span> 
+								</c:when>
+								<c:otherwise>
+									누구냐 넌 
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>
+							<img src="${initParam.IMG_SERVER_PATH}/image/heart.png" width="30px" height="30px"> ${traveler.total_likecount }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -39,14 +62,60 @@
 	</div>
 </div>
 
+<div class="row no-gutters">
+	<div class="btn-area text-center" style="width: 100%">
+		<button id="upgradeBtn" class="btn btn-lg btn-success">진급하기</button>
+		<button id="downgradeBtn" class="btn btn-lg btn-danger">강등하기</button>
+	</div>
+</div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#myTable').DataTable({
-            "order": [[ 0, "desc" ]],
+            "order": [[ 1, "asc" ]],
 		});
 	});
 	
 	function moveToDetail(seq) {
 		location.href = 'travelerDetail.do?seq='+seq;
 	}
+	
+	$('#upgradeBtn').on('click', function () {
+		var users = [];
+		var checked = $('input[class="traveler_seq"]:checked');
+		
+		for(var i=0; i<$('input[class="traveler_seq"]:checked').length; i++){
+			users[i] = parseInt(checked[i].value);
+		}
+		
+		$.ajax({
+			url : 'updateLevel.do',
+			data : { users : users },
+			method : 'POST',
+			success : function (data) {
+				if(data){
+					window.location.reload(true);					
+				}
+			}
+		})
+	})
+	$('#downgradeBtn').on('click', function () {
+		var users = [];
+		var checked = $('input[class="traveler_seq"]:checked');
+		
+		for(var i=0; i<$('input[class="traveler_seq"]:checked').length; i++){
+			users[i] = parseInt(checked[i].value);
+		}
+		
+		$.ajax({
+			url : 'downdateLevel.do',
+			data : { users : users },
+			method : 'POST',
+			success : function (data) {
+				if(data){
+					window.location.reload(true);					
+				}
+			}
+		})
+	})
 </script>

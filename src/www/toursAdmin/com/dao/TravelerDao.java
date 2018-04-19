@@ -2,6 +2,7 @@ package www.toursAdmin.com.dao;
 
 import java.util.List;
 
+import www.toursAdmin.com.model.LevelDto;
 import www.toursAdmin.com.model.TravelerDto;
 
 public interface TravelerDao {
@@ -10,6 +11,8 @@ public interface TravelerDao {
 
 	TravelerDto getTravelerBySeq(int seq);
 
-	List<TravelerDto> getTopRankTraveler();
+	List<LevelDto> getTopRankTraveler();
+
+	boolean updateLevel(int i, int status);
 
 }
