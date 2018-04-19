@@ -5,8 +5,8 @@
 	<h1 class="h2">${doc_title }</h1>
 	<div class="btn-toolbar mb-2 mb-md-0">
 		<div class="btn-group mr-2">
-			<button class="btn btn-sm btn-outline-secondary">Share</button>
-			<button class="btn btn-sm btn-outline-secondary">Export</button>
+			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='freeManager.do'">자유게시판</button>
+			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='freeCategory.do'">카테고리 관리</button>
 		</div>
 		<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
 			<span data-feather="calendar"></span> This week

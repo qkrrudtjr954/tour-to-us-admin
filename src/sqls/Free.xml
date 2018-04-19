@@ -23,4 +23,21 @@
 		UPDATE FREEBBS SET STATUS=2
 		WHERE SEQ=#{seq}
 	</update>
+	
+	<select id="getCategory" resultType="www.toursAdmin.com.model.CommuFreeCategoryDto">
+		SELECT * FROM FREECATEGORY
+	</select>
+	
+	<insert id="categoryInsert" parameterType="www.toursAdmin.com.model.CommuFreeCategoryDto">
+		INSERT INTO FREECATEGORY(SEQ, TITLE, DESCRIPTION, STATUS, REG_DATE, LAST_UPDATED)
+		VALUES(EDITORCATEGORY_SEQ.NEXTVAL, #{title}, #{description}, 0, SYSDATE, SYSDATE)
+	</insert>
+	
+	<update id="updateStatus" parameterType="www.toursAdmin.com.model.CommuFreeCategoryDto">
+		UPDATE FREECATEGORY SET STATUS = #{status} WHERE SEQ=#{seq}
+	</update>
+	
+	<select id="getCategoryBySeq" parameterType="int" resultType="www.toursAdmin.com.model.CommuFreeCategoryDto">
+		SELECT * FROM FREECATEGORY WHERE SEQ=#{seq}
+	</select>
 </mapper>
