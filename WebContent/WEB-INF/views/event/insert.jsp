@@ -35,7 +35,7 @@
 		<form action="eventInsert.do" method="POST" class="eventForm">
 			<div class="form-group">
 				<label class="event-form-label" for="title">이벤트 제목</label> 
-				<input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Title"> 
+				<input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" placeholder="Title"> 
 			</div>
 			
 			<div class="form-group">

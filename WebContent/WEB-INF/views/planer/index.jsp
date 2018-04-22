@@ -23,6 +23,7 @@
 					<th>플래너 제목</th>
 					<th>여행 지역</th>
 					<th>여행 기간</th>
+					<th>상태</th>					
 					<th>상세보기</th>
 				</tr>
 			</thead>
@@ -33,6 +34,24 @@
 						<td>${planer.title }</td>
 						<td>${planer.location }</td>
 						<td>${planer.from_date } ~ ${planer.to_date }</td>
+						<td>
+							<c:choose>
+								<c:when test="${planer.status == 0 }">
+									<button class="btn btn-warning">미완료</button>
+								</c:when>
+								<c:when test="${planer.status == 1 }">
+									<button class="btn btn-success">완료(공개)</button>
+								</c:when>
+								<c:when test="${planer.status == 2 }">
+									<button class="btn btn-success">완료(비공개)</button>
+								</c:when>
+								<c:when test="${planer.status == 3 }">
+									<button class="btn btn-danger disabled">user삭제</button>
+								</c:when>
+								<c:when test="${planer.status == 4 }">
+									<button class="btn btn-danger disabled">admin삭제</button>	</c:when>
+							</c:choose>
+						</td>
 						<td><button class="btn btn-primary" onclick="moveToDetail(${planer.seq})">Detail</button></td>
 					</tr>
 				</c:forEach>
