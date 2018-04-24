@@ -23,6 +23,6 @@
 	
 	<insert id="dataUpload" parameterType="www.toursAdmin.com.model.TotoGuideDto">
 		INSERT INTO TOTOGUIDE(SEQ, TITLE, CONTENT, PIC, LOCATION, FILENAME, READCOUNT, DOWNCOUNT, REG_DATE, LAST_UPDATED, STATUS)
-		VALUES(TOTOGUIDE_SEQ.NEXTVAL, #{title}, #{content}, './image/book.jpg', #{location}, #{filename}, 0, 0, SYSDATE, SYSDATE, 0)
+		VALUES(TOTOGUIDE_SEQ.NEXTVAL, #{title}, #{content}, #{pic}, #{location}, #{filename}, 0, 0, SYSDATE, SYSDATE, 0)
 	</insert>
 </mapper>

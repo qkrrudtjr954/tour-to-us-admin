@@ -42,17 +42,24 @@
 				<input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp" placeholder="Title"> 
 			</div>
 			
+			<div class="form-row d-flex align-items-center">
+				<div class="form-group col-md-9">
+					<label class="upload-form-label" for="pic">표지</label>
+					<br> 
+					<input type="file" id="pic-temp">
+					<input type="hidden" name="pic" value="no-cover.png">
+				</div>
+				<div class="form-group col-md-3">
+					<img id="show-cover" alt="" src="${initParam.IMG_SERVER_PATH }/image/no-cover.png" width="100%" style="border:1px solid gray;">
+				</div>
+			</div>
+
 			<div class="form-group">
 				<label class="upload-form-label" for="title">파일</label>
 				<br> 
 				<input type="file" name="fileload">
 			</div>
-			
-			<!-- <div class="form-group">
-				<label class="upload-form-label" for="title">사진</label> 
-				<input type="file" name="fileload">
-			</div> -->
-	
+
 			<div class="form-group">
 				<label class="upload-form-label" for="title">지역</label> 
 				<select class="form-control" id="location" name="location" style="width: 200px">
@@ -116,6 +123,30 @@ function sendFile(file, editor) {
 				var url = '${initParam.IMG_SERVER_PATH }/image/'+ data.filename;
 				$(editor).summernote('editor.insertImage', url);
 			}
+	});
+}
+
+$('#pic-temp').change(function() {
+	sendCoverPicture(this.files[0]);
+});
+
+function sendCoverPicture(file, dom) {
+	formdata = new FormData();
+	formdata.append("userImage", file);
+	$.ajax({
+		data : formdata,
+		type : "POST",
+		url : '${initParam.IMG_SERVER_PATH}/upload',
+		cache : false,
+		contentType : false,
+		processData : false,
+		success : function(data) {
+			var filename = data.filename;
+
+			$('input[name="pic"]').val(filename);
+			$('#show-cover').attr('src', '${initParam.IMG_SERVER_PATH}/image/' + filename);
+
+		}
 	});
 }
 </script>

@@ -87,24 +87,16 @@ public class UploadController {
 	@RequestMapping(value="uploadInsertAf.do", method=RequestMethod.POST)
 	public String uploadInsertAf(Model model, TotoGuideDto upload, HttpServletRequest req, @RequestParam(value="fileload")MultipartFile fileload) {
 		logger.info("UploadController >>>> uploadInsertAf");
-		System.out.println(upload.toString());
-		System.out.println(fileload);
+		
 		// upload -MultipartResolver spring에 추가
 		upload.setFilename(fileload.getOriginalFilename());
-		
-		// 서버저장
-		//String fupload = req.getServletContext().getRealPath("/upload");
-		//System.out.println("fup"+fupload);
-		
 		// 폴더저장
 		String fupload = "c:\\test";
-		
 		String f = upload.getFilename();
 		
 		// 이름변경
 		//String newFile = FUpUtil.getNewFile(f);
 		upload.setFilename(f);
-		System.out.println(fupload+"\\"+f);
 		
 		try {
 			File file = new File(fupload+"/"+f);
@@ -113,7 +105,6 @@ public class UploadController {
 			// db insert
 			uploadService.dataUpload(upload);
 			
-			System.out.println("upload success");
 		} catch (IOException e) {
 			System.out.println("upload fail");
 		}
