@@ -46,7 +46,7 @@ ${toditor }
 				method: 'GET',
 				success: function (data) {
 					alert('삭제 됐습니다.');
-					console.log(data);
+					location.href="toditorManager.do";
 				}
 			})
 		}

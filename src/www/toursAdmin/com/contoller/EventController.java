@@ -51,7 +51,7 @@ public class EventController {
 	
 	@RequestMapping(value="eventInsert.do", method=RequestMethod.POST)
 	public String eventInsertAf(RedirectAttributes redirectAttributes, EventDto event) {
-		System.out.println("oh yeah");
+		
 		EventDto result = eventService.insertEvent(event);
 		redirectAttributes.addAttribute("seq", result.getSeq());
 		return "redirect:eventDetail.do";
