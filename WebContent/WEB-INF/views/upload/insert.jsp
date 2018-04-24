@@ -36,7 +36,7 @@
 
 <div class="row no-gutters">
 	<div class="offset-md-3 col-md-6">
-		<form action="uploadInsertAf.do" method="POST" class="uploadForm" enctype="multipart/form-data">
+		<form action="uploadInsertAf.do" method="POST" class="uploadForm">
 			<div class="form-group">
 				<label class="upload-form-label" for="title">자료 제목</label> 
 				<input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp" placeholder="Title"> 
@@ -57,7 +57,7 @@
 			<div class="form-group">
 				<label class="upload-form-label" for="title">파일</label>
 				<br> 
-				<input type="file" name="fileload">
+				<input type="file" name="filename">
 			</div>
 
 			<div class="form-group">
@@ -146,6 +146,30 @@ function sendCoverPicture(file, dom) {
 			$('input[name="pic"]').val(filename);
 			$('#show-cover').attr('src', '${initParam.IMG_SERVER_PATH}/image/' + filename);
 
+		}
+	});
+}
+
+$('input[name="filename"]').change(function() {
+	if(this.files[0] != null){		
+		sendPdfFile(this.files[0], this);
+	}
+});
+
+function sendPdfFile(file, dom) {
+	formdata = new FormData();
+	formdata.append("guideFile", file);
+	$.ajax({
+		data : formdata,
+		type : "POST",
+		url : '${initParam.FILE_SERVER_PATH }/upload',
+		cache : false,
+		contentType : false,
+		processData : false,
+		success : function(data) {
+			var filename = data.filename;
+
+			$(this).val(filename);
 		}
 	});
 }
