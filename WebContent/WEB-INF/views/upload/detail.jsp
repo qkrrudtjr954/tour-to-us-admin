@@ -105,7 +105,7 @@ h2 {
 		<div class="offset-md-3 col-md-4 ">
 			<div class="row no-gutters" id="upload-pic-box">
 				<div class="upload-img">
-					<img class="upload-img-top"  src="${upload.pic eq null ? 'image/no-img.png' : upload.pic}" width="300px" height="355px">
+					<img class="upload-img-top"  src="${initParam.IMG_SERVER_PATH }/image/${upload.pic}" width="300px" height="355px">
 				</div>
 			</div>
 		</div>
