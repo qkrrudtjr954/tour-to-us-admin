@@ -50,7 +50,6 @@ public class FreeServiceImpl implements FreeService {
 		CommuFreeCategoryDto categoryDto = freeDao.getCategoryBySeq(seq);
 		categoryDto.setStatus((categoryDto.getStatus()+1) % 2);
 		freeDao.updateStatus(categoryDto);
-		System.out.println("ser"+categoryDto.toString());
 		
 		return freeDao.getCategoryBySeq(seq);
 	}

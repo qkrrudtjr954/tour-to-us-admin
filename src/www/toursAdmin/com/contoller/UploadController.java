@@ -44,7 +44,6 @@ public class UploadController {
 		model.addAttribute("menu_id", "upload");
 		model.addAttribute("doc_title", "자료 업로드 관리");
 		model.addAttribute("uploadlist", list);
-		System.out.println(list);
 		
 		return "uploadList.tiles";
 	}

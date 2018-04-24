@@ -60,7 +60,6 @@ public class FreeController {
 	
 	@RequestMapping(value="categoryAdd.do", method=RequestMethod.GET)
 	public String categoryAdd(Model model, CommuFreeCategoryDto categoryDto)throws Exception {
-		System.out.println(categoryDto.toString());
 		freeService.categoryInsert(categoryDto);
 		
 		return "redirect:/freeCategory.do";
@@ -69,7 +68,6 @@ public class FreeController {
 	@ResponseBody
 	@RequestMapping(value="changeCategoryStatus.do", method=RequestMethod.GET)
 	public CommuFreeCategoryDto changeCategoryStatus(int seq)throws Exception{
-		System.out.println(seq);
 		CommuFreeCategoryDto result = freeService.updateStatus(seq);
 		return result;
 	}
